@@ -1,8 +1,11 @@
 """ In the dependencies section we add the database session managment and other related to the API"""
+import os
 from sqlmodel import Session, create_engine, SQLModel, select
+from dotenv import load_dotenv
 
 # Database setup
-DATABASE_URL = "sqlite:///./db/database.db"
+load_dotenv('.env')
+DATABASE_URL = os.getenv('DATABASE_URL', None)
 engine = create_engine(
     DATABASE_URL,
     connect_args={
